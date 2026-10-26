@@ -187,6 +187,56 @@
         .btn-action:hover {
             background: #2563eb;
         }
+        /* Game Container Overlay */
+        #gameOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0f172a;
+            z-index: 2000;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .game-frame {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            background: #1e293b;
+            border: 2px solid #22c55e;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+        .close-game-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .interactive-btn {
+            background: #22c55e;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -194,7 +244,7 @@
     <!-- Header -->
     <header>
         <div class="logo">⚡ PlayKamao</div>
-        <div class="wallet-box" onclick="switchTab('wallet')">💰 ₹<span id="userBalance">0.00</span></div>
+        <div class="wallet-box" onclick="switchTab('wallet')">💰 ₹<span id="userBalance">50.00</span></div>
     </header>
 
     <!-- Main Container -->
@@ -208,12 +258,12 @@
             </div>
 
             <div class="section-title">
-                <span>🔥 लोकप्रिय गेम्स (8+ Games)</span>
+                <span>🔥 लोकप्रिय गेम्स (12 गेम्स)</span>
                 <span style="font-size: 12px; color: #22c55e;">लाइव यूज़र्स: <span id="onlineCount">1,420</span></span>
             </div>
 
             <div class="games-grid" id="gamesGrid">
-                <!-- Games will be injected via JS -->
+                <!-- Games injected via JS -->
             </div>
         </div>
 
@@ -228,7 +278,7 @@
             <div class="section-title">💳 वॉलेट और निकासी</div>
             <div class="card-box">
                 <p style="color: #94a3b8; font-size: 13px;">कुल विनिंग बैलेंस</p>
-                <h2 style="font-size: 28px; color: #22c55e; margin: 5px 0;">₹<span id="walletBalance">0.00</span></h2>
+                <h2 style="font-size: 28px; color: #22c55e; margin: 5px 0;">₹<span id="walletBalance">50.00</span></h2>
                 <p style="font-size: 12px; color: #cbd5e1;">न्यूनतम निकासी सीमा: ₹50</p>
                 <button class="btn-action" onclick="withdrawMoney()">UPI में पैसे निकालें (Withdraw)</button>
             </div>
@@ -248,13 +298,22 @@
                 <p style="font-size: 13px; color: #94a3b8; margin-top: 5px;">ID: #PK98421</p>
             </div>
             <div class="card-box">
-                <p><strong>कुल गेम खेले:</strong> 12</p>
-                <p style="margin-top: 8px;"><strong>जीत (Wins):</strong> 8</p>
+                <p><strong>कुल गेम खेले:</strong> <span id="gamesPlayed">0</span></p>
+                <p style="margin-top: 8px;"><strong>जीत (Wins):</strong> <span id="gamesWon">0</span></p>
                 <p style="margin-top: 8px;"><strong>रैंक:</strong> #42 (India)</p>
             </div>
             <button class="btn-action" style="background: #ef4444;" onclick="alert('लॉग आउट सुरक्षित रूप से किया गया!')">लॉग आउट</button>
         </div>
 
+    </div>
+
+    <!-- Game Overlay -->
+    <div id="gameOverlay">
+        <h2 id="activeGameTitle" style="margin-bottom: 15px;">गेम</h2>
+        <div class="game-frame" id="gameFrame">
+            <!-- Mini Game Interface Injected Here -->
+        </div>
+        <button class="close-game-btn" onclick="closeGame()">गेम बंद करें (Exit)</button>
     </div>
 
     <!-- Bottom Navigation Bar -->
@@ -278,7 +337,6 @@
     </div>
 
     <script>
-        // 8+ मजेदार गेम्स का डेटा
         const gamesList = [
             { id: 1, title: "Fruit Ninja", icon: "🍉", players: "4.2k खेल रहे हैं" },
             { id: 2, title: "Number Puzzle", icon: "🔢", players: "2.1k खेल रहे हैं" },
@@ -287,21 +345,30 @@
             { id: 5, title: "Car Dodger", icon: "🏎️", players: "1.9k खेल रहे हैं" },
             { id: 6, title: "Quiz Master", icon: "❓", players: "5.0k खेल रहे हैं" },
             { id: 7, title: "Tower Stack", icon: "🧱", players: "2.8k खेल रहे हैं" },
-            { id: 8, title: "Tic-Tac-Toe", icon: "❌", players: "6.3k खेल रहे हैं" }
+            { id: 8, title: "Tic-Tac-Toe", icon: "❌", players: "6.3k खेल रहे हैं" },
+            { id: 9, title: "Snake Game", icon: "🐍", players: "3.1k खेल रहे हैं" },
+            { id: 10, title: "Dino Run", icon: "🦖", players: "4.5k खेल रहे हैं" },
+            { id: 11, title: "Rock Paper", icon: "🪨", players: "2.2k खेल रहे हैं" },
+            { id: 12, title: "Memory Card", icon: "🃏", players: "1.7k खेल रहे हैं" }
         ];
 
-        let balance = 50.00; // शुरुआती डेमो बैलेंस
+        let balance = 50.00;
+        let playedCount = 0;
+        let wonCount = 0;
+        let activeScore = 0;
 
         function updateUI() {
             document.getElementById('userBalance').innerText = balance.toFixed(2);
             document.getElementById('walletBalance').innerText = balance.toFixed(2);
+            document.getElementById('gamesPlayed').innerText = playedCount;
+            document.getElementById('gamesWon').innerText = wonCount;
         }
 
         function renderGames() {
             let gridHTML = '';
             gamesList.forEach(game => {
                 gridHTML += `
-                    <div class="game-card" onclick="playGame('${game.title}')">
+                    <div class="game-card" onclick="openGame('${game.title}', '${game.icon}')">
                         <div class="game-img">${game.icon}</div>
                         <div class="game-info">
                             <div class="game-title">${game.title}</div>
@@ -316,53 +383,71 @@
         }
 
         function switchTab(tabName) {
-            // Hide all sections
             document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
 
-            // Show selected section
             if(tabName === 'home') {
                 document.getElementById('homeTab').classList.add('active');
-                event.currentTarget.classList.add('active');
             } else if(tabName === 'games') {
                 document.getElementById('gamesTab').classList.add('active');
-                event.currentTarget.classList.add('active');
             } else if(tabName === 'wallet') {
                 document.getElementById('walletTab').classList.add('active');
-                event.currentTarget.classList.add('active');
             } else if(tabName === 'profile') {
                 document.getElementById('profileTab').classList.add('active');
-                event.currentTarget.classList.add('active');
             }
         }
 
-        function playGame(gameName) {
-            alert(gameName + ' लोड हो रहा है! तैयार हो जाइए...');
-            balance += 5; // गेम खेलने पर डेमो जीत
+        function openGame(title, icon) {
+            document.getElementById('activeGameTitle').innerText = `${icon} ${title}`;
+            document.getElementById('gameOverlay').style.display = 'flex';
+            activeScore = 0;
+
+            const frame = document.getElementById('gameFrame');
+            frame.innerHTML = `
+                <div style="font-size: 60px; margin-bottom: 10px;">${icon}</div>
+                <h3>${title} चैलेंज</h3>
+                <p style="margin-top: 10px; color: #94a3b8;">टैप करके पॉइंट्स इकट्ठा करें!</p>
+                <h2 style="color: #22c55e; margin-top: 15px;">स्कोर: <span id="gameScore">0</span></h2>
+                <button class="interactive-btn" onclick="tapGameScore()">टैप करें! (+1)</button>
+            `;
+        }
+
+        function tapGameScore() {
+            activeScore += 1;
+            document.getElementById('gameScore').innerText = activeScore;
+        }
+
+        function closeGame() {
+            document.getElementById('gameOverlay').style.display = 'none';
+            playedCount += 1;
+            if (activeScore > 0) {
+                wonCount += 1;
+                let reward = activeScore * 0.5;
+                balance += reward;
+                alert(`शानदार! आपने ${activeScore} पॉइंट्स बनाए और ₹${reward.toFixed(2)} जीते!`);
+            }
             updateUI();
         }
 
         function withdrawMoney() {
             if(balance >= 50) {
-                alert('निकासी अनुरोध सफल! आपके UPI खाते में पैसे भेजे जा रहे हैं।');
+                alert('निकासी अनुरोध सफल! आपके खाते में प्रक्रिया शुरू हो गई है।');
                 balance -= 50;
                 updateUI();
             } else {
-                alert('न्यूनतम निकासी सीमा ₹50 है। जीतने के लिए और गेम खेलें!');
+                alert('न्यूनतम निकासी सीमा ₹50 है। और गेम खेलें!');
             }
         }
 
         function addMoney() {
             balance += 100;
-            alert('सफलतापूर्वक ₹100 आपके वॉलेट में जोड़ दिए गए हैं!');
+            alert('सफलतापूर्वक ₹100 वॉलेट में जोड़ दिए गए हैं!');
             updateUI();
         }
 
-        // Initial Load
         renderGames();
         updateUI();
 
-        // Live Online Counter Animation
         setInterval(() => {
             let randomCount = Math.floor(Math.random() * 200) + 1300;
             document.getElementById('onlineCount').innerText = randomCount;
