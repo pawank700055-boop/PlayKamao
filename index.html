@@ -1,102 +1,372 @@
-SAVE THE CODE BELOW AS index.html
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#07142e">
-<title>GameKamao — Play • Learn • Challenge</title>
-<style>
-:root{--bg:#061129;--panel:#0b1d40;--panel2:#102650;--line:#203d70;--text:#f4f7ff;--muted:#a8badc;--cyan:#22d3ee;--blue:#3977ff;--purple:#7c3aed;--yellow:#ffd43b;--green:#10d987;--pink:#ff4da6}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 45% -20%,#173b86 0,transparent 45%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}.app{min-height:100vh}.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:18px;padding:13px 20px;background:#06132bf2;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.brand{display:flex;align-items:center;gap:10px;min-width:220px}.brand-icon{font-size:34px;filter:drop-shadow(0 0 10px #6e61ff)}.brand-name{font-size:24px;font-weight:900;letter-spacing:-.8px}.brand-name span{color:var(--yellow)}.brand-sub{font-size:11px;color:var(--muted);letter-spacing:2px}.hamb{display:none;background:none;border:0;color:white;font-size:25px}.search{flex:1;max-width:540px;position:relative}.search input{width:100%;border:1px solid #2d4d82;border-radius:28px;background:#081a39;color:white;padding:13px 18px 13px 42px;outline:none}.search:before{content:"⌕";position:absolute;left:16px;top:6px;font-size:26px;color:#9db5df}.top-actions{margin-left:auto;display:flex;align-items:center;gap:12px}.user-chip,.wallet-chip{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:14px;padding:8px 12px;background:#0a1a38}.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ffd166,#ff6b6b);font-size:21px}.small{font-size:12px;color:var(--muted)}.money{font-weight:800;font-size:18px}.btn{border:0;border-radius:12px;padding:11px 16px;font-weight:800;background:linear-gradient(135deg,#11d99b,#00ad76);color:#04291f;box-shadow:0 5px 18px #00ce8a24}.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}.btn.secondary{background:#172d54;color:#e7f0ff;border:1px solid #35517e;box-shadow:none}.btn.yellow{background:linear-gradient(135deg,#ffe66d,#ffb703);color:#422700}.layout{display:grid;grid-template-columns:215px minmax(0,1fr);gap:16px;max-width:1700px;margin:auto;padding:16px}.sidebar{background:#071633;border:1px solid #142d55;border-radius:18px;padding:12px;height:fit-content;position:sticky;top:88px}.nav{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;color:#dbe7ff;background:transparent;border-radius:11px;padding:12px;margin:3px 0}.nav span{font-size:20px;width:25px;text-align:center}.nav.active,.nav:hover{background:linear-gradient(90deg,#124a91,#102b59);color:#5be8ff}.side-promo{margin-top:20px;padding:16px;border-radius:14px;background:linear-gradient(145deg,#4322a7,#123c91);border:1px solid #6553ff}.side-promo h3{margin:5px 0}.side-promo p{font-size:12px;color:#e0e7ff}.content{min-width:0}.hero{min-height:270px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:15px;overflow:hidden;border-radius:19px;padding:26px 30px;background:radial-gradient(circle at 80% 50%,#7827e9 0,transparent 32%),linear-gradient(120deg,#2211a6,#3a21d6 55%,#0d55a5);border:1px solid #4b4dd2;position:relative}.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(100deg,transparent 35%,#ffffff0b)}.hero h1{font-size:clamp(30px,4vw,53px);line-height:.98;margin:0 0 15px;font-weight:1000;letter-spacing:-1.4px}.hero h1 em{color:#ffe438;font-style:normal}.hero p{font-size:17px;line-height:1.5;color:#e2e8ff;max-width:480px}.hero-art{font-size:clamp(90px,12vw,155px);text-align:center;filter:drop-shadow(0 10px 16px
-#02071d90);transform:rotate(-5deg)}.hero-actions{display:flex;gap:10px;flex-wrap:wrap}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat{background:#0b1e40;border:1px solid var(--line);border-radius:13px;padding:13px 15px}.stat strong{display:block;font-size:21px}.stat span{color:var(--muted);font-size:12px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px 2px 12px}.section-head h2{font-size:20px;margin:0}.section-head p{margin:3px 0 0;color:var(--muted);font-size:12px}.filters{display:flex;gap:7px;flex-wrap:wrap}.filter{background:#0b1d3c;color:#b9c9e6;border:1px solid #25416d;padding:7px 11px;border-radius:20px;font-size:12px}.filter.active{background:#154b8b;color:#fff;border-color:#3f9dff}.game-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.game-card{border:1px solid #27477c;background:linear-gradient(145deg,#102750,#081832);border-radius:16px;overflow:hidden;min-width:0;transition:.2s}.game-card:hover{transform:translateY(-3px);border-color:#58d9ff;box-shadow:0 12px 24px #0003}.game-cover{height:116px;display:grid;place-items:center;font-size:60px;position:relative;background:radial-gradient(circle at 50% 30%,var(--glow),transparent 65%),linear-gradient(135deg,var(--c1),var(--c2))}.game-cover .tag{position:absolute;top:9px;left:9px;background:#061129bb;border:1px solid #ffffff40;border-radius:7px;padding:4px 7px;font-size:10px;font-weight:800}.game-info{padding:11px}.game-info h3{margin:0 0 4px;font-size:15px}.game-info p{margin:0 0 10px;font-size:11px;color:var(--muted);min-height:30px}.game-info .btn{width:100%;padding:9px;font-size:12px}.bottom-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-top:16px}.panel{background:#0a1c3c;border:1px solid var(--line);border-radius:16px;padding:16px}.panel h3{margin:0 0 12px}.leader-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #20375e}.leader-row:last-child{border:0}.rank{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:#18345f;font-weight:800}.leader-row strong{margin-left:auto;color:var(--yellow)}.notice{font-size:12px;line-height:1.5;color:#c2d2ee;background:#0b2347;border:1px solid #244877;border-radius:12px;padding:12px;margin-top:14px}.footer{padding:22px 6px;color:#8fa4c9;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.footer a{color:#9db7e4;text-decoration:none;margin-right:12px}.page{display:none}.page.active{display:block}.profile-box{display:flex;align-items:center;gap:16px;background:linear-gradient(120deg,#123e80,#24165b);padding:22px;border-radius:16px;border:1px solid #385eac;margin-bottom:14px}.profile-avatar{font-size:50px}.profile-box h2{margin:0}.form-row{display:grid;gap:7px;margin:12px 0}.form-row input{width:100%;padding:12px;border-radius:10px;border:1px solid #34517e;background:#06132b;color:white}.modal-backdrop{position:fixed;inset:0;background:#020817cc;z-index:50;display:none;align-items:center;justify-content:center;padding:16px}.modal-backdrop.show{display:flex}.modal{width:min(560px,100%);max-height:90vh;overflow:auto;background:#0b1c3b;border:1px solid #365589;border-radius:18px;padding:20px;box-shadow:0 20px 80px #0008}.modal-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.modal-head h2{margin:0}.close{border:0;background:#1a3158;color:white;border-radius:9px;width:36px;height:36px;font-size:22px}.game-stage{margin:15px 0;padding:16px;background:#06132b;border:1px solid #203b68;border-radius:13px;min-height:150px}.game-stage button{margin:4px}.game-stage .big{font-size:30px;font-weight:900}.quiz-option{display:block;width:100%;text-align:left;margin:7px 0!important;background:#11284d;color:white;border:1px solid #2e4f80;border-radius:9px;padding:11px}.quiz-option:hover{border-color:var(--cyan)}.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.tile{height:58px;background:#172d53;border:1px solid
-#2d4c7a;border-radius:9px;color:white;font-size:24px}.tile.open{background:#244c89}.tile.matched{background:#0c7759;border-color:#22d3a3}.admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.muted{color:var(--muted)}.pill{display:inline-block;border-radius:99px;background:#143b69;padding:5px 9px;font-size:11px;color:#bceaff}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:80;background:#f5fbff;color:#092044;padding:11px 16px;border-radius:12px;box-shadow:0 8px 30px #0005;display:none;font-weight:700}.toast.show{display:block}
-@media(max-width:1100px){.layout{grid-template-columns:175px minmax(0,1fr);padding:12px}.game-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.brand{min-width:175px}.user-chip .who{display:none}.hero{min-height:230px}}
-@media(max-width:760px){.topbar{padding:10px 12px;gap:9px}.hamb{display:block}.brand{min-width:0}.brand-icon{font-size:27px}.brand-name{font-size:19px}.brand-sub{font-size:9px}.search{display:none}.user-chip{padding:5px;border:0;background:transparent}.user-chip .avatar{width:33px;height:33px}.wallet-chip{padding:7px 9px}.wallet-chip .money{font-size:13px}.wallet-chip .btn{display:none}.layout{display:block;padding:10px}.sidebar{display:none;position:fixed;z-index:30;left:10px;top:66px;width:230px;box-shadow:0 20px 60px #0009}.sidebar.open{display:block}.hero{grid-template-columns:1fr;min-height:0;padding:23px}.hero-art{position:absolute;right:8px;top:30px;font-size:90px;opacity:.38}.hero-copy{position:relative;z-index:1}.hero h1{font-size:36px;max-width:420px}.hero p{font-size:14px;max-width:360px}.stats{grid-template-columns:repeat(3,1fr);gap:6px}.stat{padding:10px}.stat strong{font-size:17px}.stat span{font-size:10px}.game-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.game-cover{height:100px;font-size:51px}.game-info{padding:9px}.game-info h3{font-size:14px}.bottom-grid{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.filters{overflow:auto;max-width:100%;padding-bottom:3px}.footer{padding-bottom:90px}.admin-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:380px){.brand-name{font-size:16px}.brand-sub{letter-spacing:1px}.hero h1{font-size:30px}.game-cover{height:85px;font-size:43px}.wallet-chip{gap:4px}.wallet-chip .small{display:none}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayKamao - Winzo Style Gaming</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #0f172a;
+            color: #ffffff;
+            padding-bottom: 70px;
+        }
+        /* Top Header */
+        header {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #22c55e;
+            letter-spacing: 1px;
+        }
+        .wallet-box {
+            background: #1e293b;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid #22c55e;
+            font-size: 14px;
+            font-weight: 600;
+            color: #22c55e;
+            cursor: pointer;
+        }
+        /* Container */
+        .container {
+            padding: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        /* Banner */
+        .banner {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(22, 163, 74, 0.3);
+        }
+        .banner h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .banner p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        /* Section Title */
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #f8fafc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .game-card {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            transition: transform 0.2s, border-color 0.2s;
+            cursor: pointer;
+        }
+        .game-card:hover {
+            transform: translateY(-3px);
+            border-color: #22c55e;
+        }
+        .game-img {
+            height: 100px;
+            background: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+        .game-info {
+            padding: 12px;
+        }
+        .game-title {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .game-players {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+        .play-btn {
+            background: #22c55e;
+            color: #000;
+            border: none;
+            width: 100%;
+            padding: 6px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .play-btn:hover {
+            background: #16a34a;
+        }
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #1e293b;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #334155;
+            z-index: 1000;
+        }
+        .nav-item {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .nav-item.active {
+            color: #22c55e;
+            font-weight: bold;
+        }
+        .nav-item div:first-child {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+        /* Hidden Sections for Tabs */
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+        /* Profile & Wallet Styles */
+        .card-box {
+            background: #1e293b;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #334155;
+        }
+        .btn-action {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-action:hover {
+            background: #2563eb;
+        }
+    </style>
 </head>
 <body>
-<div class="app">
-<header class="topbar">
-<button class="hamb" id="hamb" aria-label="मेन्यू">☰</button>
-<div class="brand"><div class="brand-icon">🎮</div><div><div class="brand-name">Game<span>Kamao</span></div><div class="brand-sub">PLAY • LEARN • CHALLENGE</div></div></div>
-<div class="search"><input id="searchInput" placeholder="गेम खोजें..." aria-label="गेम खोजें"></div>
-<div class="top-actions">
-<button class="user-chip" id="profileShortcut" aria-label="प्रोफाइल"><span class="avatar" id="topAvatar">🙂</span><span class="who"><b id="topName">Guest Player</b><br><span class="small">Free Player</span></span></button>
-<div class="wallet-chip"><div><div class="small">गेम पॉइंट्स</div><div class="money">🪙 <span id="topPoints">0</span></div></div></div>
-</div>
-</header>
-<div class="layout">
-<aside class="sidebar" id="sidebar">
-<button class="nav active" data-page="home"><span>🏠</span> होम</button>
-<button class="nav" data-page="games"><span>🎮</span> सभी गेम</button>
-<button class="nav" data-page="profile"><span>👤</span> मेरी प्रोफाइल</button>
-<button class="nav" data-page="leaderboard"><span>🏆</span> लीडरबोर्ड</button>
-<button class="nav" data-page="rewards"><span>🎁</span> उपलब्धियाँ</button>
-<button class="nav" data-page="admin"><span>🛠️</span> डेमो एडमिन</button>
-<div class="side-promo"><div style="font-size:31px">🎯</div><h3>दोस्तों को चुनौती दें</h3><p>अपना स्कोर साझा करें और दोस्तों को खेलने के लिए बुलाएँ।</p><button class="btn yellow" id="shareBtn">स्कोर साझा करें</button></div>
-</aside>
-<main class="content">
-<section class="page active" id="page-home">
-<div class="hero"><div class="hero-copy"><span class="pill">✨ मुफ्त गेमिंग • कोई जमा नहीं</span><h1>PLAY SMART.<br><em>BEAT YOUR BEST.</em></h1><p>दिमागी पहेलियाँ, तेज़ रिएक्शन और मजेदार चैलेंज — अपना स्कोर बढ़ाएँ और दोस्तों को चुनौती दें!</p><div class="hero-actions"><button class="btn yellow" id="playFeatured">🎮 अभी खेलें</button><button class="btn secondary" data-goto="games">सभी 12 गेम देखें →</button></div></div><div class="hero-art" aria-hidden="true">🕹️🎲</div></div>
-<div class="stats"><div class="stat"><strong id="gamesCount">12</strong><span>मुफ्त गेम</span></div><div class="stat"><strong id="playedCount">0</strong><span>आपके खेले गेम</span></div><div class="stat"><strong id="bestScore">0</strong><span>आपका कुल स्कोर</span></div></div>
-<div class="section-head"><div><h2>🔥 लोकप्रिय गेम</h2><p>कोई असली पैसा नहीं — केवल मज़े और स्कोर</p></div><button class="btn secondary" data-goto="games">सभी देखें →</button></div>
-<div class="game-grid" id="popularGrid"></div>
-<div class="bottom-grid"><div class="panel"><h3>🏆 इस डिवाइस का लीडरबोर्ड</h3><div id="leaderMini"></div><p class="small">यह डेमो लीडरबोर्ड है; अभी दूसरे यूज़र्स से लाइव डेटा नहीं जुड़ा है।</p></div><div class="panel"><h3>🛡️ सुरक्षा और गोपनीयता</h3><p class="muted">यह शुरुआती फ्रंट-एंड डेमो है। इसमें असली बैंक/UPI, नकद पुरस्कार या सर्वर-साइड अकाउंट नहीं हैं। इसे सार्वजनिक करने से पहले सुरक्षित बैकएंड, लॉगिन, डेटा सुरक्षा और दुरुपयोग रोकने की व्यवस्था जोड़नी होगी।</p><button class="btn secondary" data-goto="profile">डेमो प्रोफाइल खोलें</button></div></div>
-</section>
-<section class="page" id="page-games"><div class="section-head"><div><h2>🎮 सभी गेम</h2><p>अपनी पसंद चुनें और अपना रिकॉर्ड बेहतर करें।</p></div></div><div class="filters" id="filters"><button class="filter active" data-filter="all">सभी</button><button class="filter" data-filter="brain">दिमाग</button><button class="filter" data-filter="speed">रफ़्तार</button><button class="filter" data-filter="casual">मज़ेदार</button></div><div style="height:12px"></div><div class="game-grid" id="allGrid"></div></section>
-<section class="page" id="page-profile"><div class="section-head"><div><h2>👤 मेरी प्रोफाइल</h2><p>डेमो प्रोफाइल इस ब्राउज़र में सेव होती है।</p></div></div><div class="profile-box"><div class="profile-avatar" id="profileAvatar">🙂</div><div><h2 id="profileTitle">Guest Player</h2><div class="muted">Free Player · स्थानीय डेमो</div><div class="pill" style="margin-top:8px">🪙 <span id="profilePoints">0</span> गेम पॉइंट्स</div></div></div><div class="panel"><h3>प्रोफाइल सेट करें</h3><div class="form-row"><label for="nameInput">आपका नाम</label><input id="nameInput" maxlength="24" placeholder="अपना नाम लिखें"></div><div class="form-row"><label for="avatarInput">अवतार इमोजी</label><input id="avatarInput" maxlength="4" placeholder="🙂"></div><button class="btn" id="saveProfile">प्रोफाइल सेव करें</button><button class="btn secondary" id="resetData" style="margin-left:8px">डेमो डेटा रीसेट</button></div><div class="notice">यह वास्तविक सुरक्षित लॉगिन नहीं है। पासवर्ड, बैंक जानकारी या निजी संवेदनशील जानकारी यहाँ न डालें। असली लॉगिन के लिए सुरक्षित सर्वर और प्रमाणीकरण सेवा चाहिए।</div></section>
-<section class="page" id="page-leaderboard"><div class="section-head"><div><h2>🏆 लीडरबोर्ड</h2><p>इस ब्राउज़र पर सेव किए गए स्कोर।</p></div></div><div class="panel" id="leaderFull"></div></section>
-<section class="page" id="page-rewards"><div class="section-head"><div><h2>🎁 उपलब्धियाँ</h2><p>गेम खेलकर उपलब्धियाँ अनलॉक करें। ये नकद या नकद में बदले जाने वाले पुरस्कार नहीं हैं।</p></div></div><div class="game-grid" id="achievementGrid"></div></section>
-<section class="page" id="page-admin"><div class="section-head"><div><h2>🛠️ डेमो एडमिन डैशबोर्ड</h2><p>केवल इस डिवाइस के डेमो आँकड़े — वास्तविक वेबसाइट के आँकड़े नहीं।</p></div></div><div class="admin-grid"><div class="stat"><strong id="adminPlays">0</strong><span>इस डिवाइस के गेम</span></div><div class="stat"><strong id="adminPoints">0</strong><span>कुल गेम पॉइंट्स</span></div><div
-class="stat"><strong>1</strong><span>स्थानीय डेमो प्रोफाइल</span></div></div><div class="panel" style="margin-top:12px"><h3>अगले संस्करण के लिए</h3><p class="muted">वास्तविक यूज़र गिनती, लॉगिन, सर्वर पर स्कोर सेव करना, मॉडरेशन और एडमिन अनुमति इस अकेली HTML फ़ाइल से सुरक्षित तरीके से लागू नहीं हो सकते। इन्हें बैकएंड और डेटाबेस के साथ बनाना होगा।</p><button class="btn secondary" id="exportBtn">डेमो आँकड़े डाउनलोड करें</button></div></section>
-<footer class="footer"><div><a href="#" data-info="यह मुफ्त गेमिंग डेमो है।">हमारे बारे में</a><a href="#" data-info="इस डेमो में कोई नकद जमा, दांव या निकासी नहीं है।">नियम</a><a href="#" data-info="यह डेमो प्रोफाइल डेटा केवल इसी ब्राउज़र में रहता है।">गोपनीयता</a></div><div>© 2026 GameKamao · Free Play Demo</div></footer>
-</main></div></div>
-<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true"><div class="modal"><div class="modal-head"><h2 id="modalTitle">गेम</h2><button class="close" id="closeModal" aria-label="बंद करें">×</button></div><div id="modalBody"></div></div></div>
-<div class="toast" id="toast"></div>
-<script>
-const games=[
-{id:'quiz',name:'क्विज़ मास्टर',emoji:'🧠',desc:'सामान्य ज्ञान के सवाल',cat:'brain',c1:'#2713a8',c2:'#1265bd',glow:'#5b5cff',tag:'दिमाग',points:10},
-{id:'memory',name:'मेमोरी मैच',emoji:'🃏',desc:'एक जैसे कार्ड मिलाएँ',cat:'brain',c1:'#5313a7',c2:'#b5179e',glow:'#ed43ff',tag:'लोकप्रिय',points:12},
-{id:'reaction',name:'रिएक्शन टेस्ट',emoji:'⚡',desc:'सही समय पर क्लिक करें',cat:'speed',c1:'#7c2d12',c2:'#dc2626',glow:'#ff7a24',tag:'रफ़्तार',points:10},
-{id:'math',name:'मैथ स्प्रिंट',emoji:'➗',desc:'तेज़ गणित हल करें',cat:'brain',c1:'#075985',c2:'#0e7490',glow:'#06b6d4',tag:'दिमाग',points:10},
-{id:'rps',name:'रॉक पेपर सीज़र',emoji:'✊',desc:'कंप्यूटर को हराएँ',cat:'casual',c1:'#14532d',c2:'#16a34a',glow:'#4ade80',tag:'क्लासिक',points:8},
-{id:'guess',name:'नंबर गेस',emoji:'🔢',desc:'छिपा नंबर खोजें',cat:'brain',c1:'#7e22ce',c2:'#4338ca',glow:'#a78bfa',tag:'पहेली',points:10},
-{id:'tap',name:'टैप चैलेंज',emoji:'👆',desc:'10 सेकंड में टैप करें',cat:'speed',c1:'#9f1239',c2:'#db2777',glow:'#fb7185',tag:'तेज़',points:10},
-{id:'sequence',name:'सीक्वेंस याद रखें',emoji:'🌈',desc:'रंगों का क्रम दोहराएँ',cat:'brain',c1:'#713f12',c2:'#ca8a04',glow:'#fde047',tag:'याददाश्त',points:12},
-{id:'word',name:'शब्द पहेली',emoji:'🔤',desc:'अक्षरों से शब्द बनाएँ',cat:'brain',c1:'#134e4a',c2:'#0f766e',glow:'#2dd4bf',tag:'शब्द',points:10},
-{id:'dice',name:'डाइस डैश',emoji:'🎲',desc:'डाइस रोल और स्कोर',cat:'casual',c1:'#1e3a8a',c2:'#2563eb',glow:'#60a5fa',tag:'मज़ेदार',points:6},
-{id:'coin',name:'कॉइन फ्लिप',emoji:'🪙',desc:'सिक्के का अनुमान लगाएँ',cat:'casual',c1:'#854d0e',c2:'#eab308',glow:'#fde047',tag:'किस्मत नहीं, मज़ा',points:5},
-{id:'pattern',name:'पैटर्न पज़ल',emoji:'🧩',desc:'अगला पैटर्न पहचानें',cat:'brain',c1:'#4c1d95',c2:'#6d28d9',glow:'#c084fc',tag:'नई पहेली',points:12}
-];
-let state={name:'Guest Player',avatar:'🙂',points:0,plays:0,best:0,scores:{},achievements:[]};
-try{const saved=JSON.parse(localStorage.getItem('gk_demo_state')||'null');if(saved)state={...state,...saved}}catch(e){}
-const $=id=>document.getElementById(id);
-function save(){try{localStorage.setItem('gk_demo_state',JSON.stringify(state))}catch(e){} renderStats()}
-function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2400)}
-function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function gameCard(g){return <article class="game-card"><div class="game-cover" style="--c1:${g.c1};--c2:${g.c2};--glow:${g.glow}"><span class="tag">${g.tag}</span>${g.emoji}</div><div class="game-info"><h3>${g.name}</h3><p>${g.desc}</p><button class="btn yellow" data-play="${g.id}">खेलें · +${g.points} तक</button></div></article>}
-function renderGames(filter='all',search=''){const list=games.filter(g=>(filter==='all'g.cat===filter)&&(g.name+' '+g.desc).toLowerCase().includes(search.toLowerCase()));$('allGrid').innerHTML=list.map(gameCard).join('')'<p class="muted">इस खोज में कोई गेम नहीं मिला।</p>';$('popularGrid').innerHTML=games.slice(0,8).map(gameCard).join('')}
-function renderStats(){['topPoints','profilePoints','adminPoints'].forEach(id=>$(id).textContent=state.points);$('playedCount').textContent=state.plays;$('bestScore').textContent=state.best;$('adminPlays').textContent=state.plays;$('topName').textContent=state.name;$('topAvatar').textContent=state.avatar;$('profileAvatar').textContent=state.avatar;$('profileTitle').textContent=state.name;$('nameInput').value=state.name;$('avatarInput').value=state.avatar;renderLeaders();renderAchievements()}
-function renderLeaders(){const rows=[{name:state.name,avatar:state.avatar,score:state.points}, {name:'PuzzlePro',avatar:'🧑‍🚀',score:145},{name:'QuizStar',avatar:'👩‍🎨',score:120},{name:'SpeedKing',avatar:'🦊',score:95}].sort((a,b)=>b.score-a.score);const html=rows.map((r,i)=><div class="leader-row"><div class="rank">${i+1}</div><span>${r.avatar}</span><span>${escapeHTML(r.name)}</span><strong>${r.score} pts</strong></div>).join('');$('leaderMini').innerHTML=html;$('leaderFull').innerHTML=html+'<p class="small">अन्य नाम उदाहरण के लिए हैं; यह लाइव ऑनलाइन रैंकिंग नहीं है।</p>'}
-function renderAchievements(){const items=[['🎮','पहला कदम','पहला गेम खेलें',state.plays>=1],['🔥','लगातार अभ्यास','5 गेम खेलें',state.plays>=5],['🧠','स्कोर मास्टर','100 पॉइंट्स पाएँ',state.points>=100],['🏆','गेम एक्सप्लोरर','5 अलग गेम खेलें',Object.keys(state.scores).length>=5]];$('achievementGrid').innerHTML=items.map(a=><article class="game-card"><div class="game-cover" style="--c1:#153d77;--c2:#4c1d95;--glow:#7c3aed">${a[0]}</div><div class="game-info"><h3>${a[1]} ${a[3]?'✅':'🔒'}</h3><p>${a[2]}</p><span class="pill">${a[3]?'अनलॉक':'अभी बाकी'}</span></div></article>).join('')}
-function gotoPage(page){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));$('page-'+page).classList.add('active');document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.page===page));$('sidebar').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'})}
-document.addEventListener('click',e=>{const p=e.target.closest('[data-play]');if(p)openGame(p.dataset.play);const n=e.target.closest('[data-page]');if(n)gotoPage(n.dataset.page);const g=e.target.closest('[data-goto]');if(g)gotoPage(g.dataset.goto);const info=e.target.closest('[data-info]');if(info){e.preventDefault();toast(info.dataset.info)}});
-$('hamb').onclick=()=>$('sidebar').classList.toggle('open');$('profileShortcut').onclick=()=>gotoPage('profile');
-$('filters').addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(!b)return;document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('active',x===b));renderGames(b.dataset.filter,$('searchInput').value)});
-$('searchInput').addEventListener('input',()=>{gotoPage('games');renderGames(document.querySelector('.filter.active')?.dataset.filter||'all',$('searchInput').value)});
-$('playFeatured').onclick=()=>openGame('quiz');$('shareBtn').onclick=shareScore;
-function shareScore(){const text=मैंने GameKamao पर ${state.points} गेम पॉइंट्स बनाए! मुफ्त गेम खेलकर अपना स्कोर बनाओ।;if(navigator.share)navigator.share({title:'GameKamao चैलेंज',text}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(text).then(()=>toast('चैलेंज टेक्स्ट कॉपी हो गया!')).catch(()=>toast(text));else toast(text)}
-$('saveProfile').onclick=()=>{const n=$('nameInput').value.trim().slice(0,24);const a=$('avatarInput').value.trim().slice(0,4);if(n)state.name=n;if(a)state.avatar=a;save();toast('डेमो प्रोफाइल सेव हुई')};
-$('resetData').onclick=()=>{if(confirm('क्या आप इस ब्राउज़र का डेमो स्कोर रीसेट करना चाहते हैं?')){state={name:'Guest Player',avatar:'🙂',points:0,plays:0,best:0,scores:{},achievements:[]};save();toast('डेमो डेटा रीसेट हुआ')}};
-$('closeModal').onclick=closeGame;$('modalBackdrop').addEventListener('click',e=>{if(e.target===$('modalBackdrop'))closeGame()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGame()});
-function closeGame(){$('modalBackdrop').classList.remove('show')}
-let gameTimer=null,gameCleanup=null;
-function openGame(id){const g=games.find(x=>x.id===id);if(!g)return;clearInterval(gameTimer);if(gameCleanup)gameCleanup();$('modalTitle').textContent=g.emoji+' '+g.name;$('modalBody').innerHTML='';$('modalBackdrop').classList.add('show');const stage=document.createElement('div');stage.className='game-stage';$('modalBody').appendChild(stage);const info=document.createElement('p');info.className='small';info.textContent='यह मुफ्त डेमो गेम है। पॉइंट्स का नकद मूल्य नहीं है।';$('modalBody').appendChild(info);
-let earned=0,finished=false;const finish=(pts,msg)=>{if(finished)return;finished=true;earned=Math.max(0,pts);state.points+=earned;state.plays++;state.best=Math.max(state.best,state.points);state.scores[id]=(state.scores[id]||0)+1;save();stage.innerHTML=<div class="big">🎉 +${earned} पॉइंट्स</div><p>${msg||'अच्छा खेला!'}</p><button class="btn yellow" id="againBtn">फिर खेलें</button> <button class="btn secondary" id="doneBtn">बंद करें</button>;$('againBtn').onclick=()=>openGame(id);$('doneBtn').onclick=closeGame};
-const btn=(txt,fn,cls='btn secondary')=>{const b=document.createElement('button');b.className=cls;b.textContent=txt;b.onclick=fn;return b};
-if(id==='quiz'){const qs=[['भारत की राजधानी क्या है?',['मुंबई','नई दिल्ली','जयपुर','लखनऊ'],1],['एक सप्ताह में कितने दिन होते हैं?',['5','6','7','8'],2],['लाल और पीला मिलाने पर कौन-सा रंग बनता है?',['हरा','नारंगी','बैंगनी','नीला'],1],['सौरमंडल का सबसे बड़ा ग्रह?',['पृथ्वी','मंगल','बृहस्पति','शुक्र'],2],['12 × 3 कितना है?',['36','32','30','42'],0]];let i=0,score=0;function q(){if(i>=qs.length){finish(score*2,${score}/${qs.length} सही जवाब।);return}let x=qs[i];stage.innerHTML=<div class="small">सवाल ${i+1}/${qs.length} · सही जवाब पर 2 अंक</div><h3>${x[0]}</h3>;x[1].forEach((o,j)=>stage.appendChild(btn(o,()=>{if(j===x[2])score++;i++;q()},'quiz-option')))}q()}
-else if(id==='memory'){const icons=['🍉','🚀','🎲','🐼','🍉','🚀','🎲','🐼'];icons.sort(()=>Math.random()-.5);stage.innerHTML='<p>एक जैसे कार्ड मिलाएँ।</p><div class="tiles" id="tiles"></div>';let first=null,lock=false,matches=0;icons.forEach((ic,i)=>{const b=btn('❔',()=>{if(lockb.classList.contains('matched')b===first)return;b.textContent=ic;b.classList.add('open');if(!first){first=b;return}lock=true;if(first.textContent===b.textContent){first.classList.add('matched');b.classList.add('matched');matches++;first=null;lock=false;if(matches===4)finish(12,'सभी जोड़े मिल गए!')}else setTimeout(()=>{first.textContent='❔';b.textContent='❔';first.classList.remove('open');b.classList.remove('open');first=null;lock=false},650)},'tile');$('tiles').appendChild(b)})}
-else if(id==='reaction'){stage.innerHTML='<p>जब बॉक्स हरा हो, तभी क्लिक करें। पहले क्लिक न करें!</p><button id="reactBtn" class="btn yellow" style="width:100%;height:90px">शुरू करने के लिए क्लिक करें</button><p id="reactText" class="small"></p>';let started=false,ready=false,startAt=0;const rb=$('reactBtn');rb.onclick=()=>{if(!started){started=true;rb.textContent='रुको...';rb.style.background='#b91c1c';const wait=1200+Math.random()*2800;gameTimer=setTimeout(()=>{ready=true;startAt=performance.now();rb.textContent='अब क्लिक!';rb.style.background='#10d987'},wait)}else if(!ready){clearTimeout(gameTimer);finish(0,'बहुत जल्दी क्लिक किया! अगली बार हरे होने तक इंतज़ार करें।')}else{const ms=Math.round(performance.now()-startAt);finish(ms<350?10:ms<600?7:4,आपका रिएक्शन टाइम ${ms} मिलीसेकंड था।)}}}
+
+    <!-- Header -->
+    <header>
+        <div class="logo">⚡ PlayKamao</div>
+        <div class="wallet-box" onclick="switchTab('wallet')">💰 ₹<span id="userBalance">0.00</span></div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- HOME TAB -->
+        <div id="homeTab" class="page-section active">
+            <div class="banner">
+                <h2>रोज़ खेलें, पॉइंट्स जीतें!</h2>
+                <p>भारत का अपना नंबर 1 गेमिंग और मनोरंजन मंच</p>
+            </div>
+
+            <div class="section-title">
+                <span>🔥 लोकप्रिय गेम्स (8+ Games)</span>
+                <span style="font-size: 12px; color: #22c55e;">लाइव यूज़र्स: <span id="onlineCount">1,420</span></span>
+            </div>
+
+            <div class="games-grid" id="gamesGrid">
+                <!-- Games will be injected via JS -->
+            </div>
+        </div>
+
+        <!-- GAMES LIST TAB -->
+        <div id="gamesTab" class="page-section">
+            <div class="section-title">🎮 सभी उपलब्ध गेम्स</div>
+            <div class="games-grid" id="allGamesGrid"></div>
+        </div>
+
+        <!-- WALLET TAB -->
+        <div id="walletTab" class="page-section">
+            <div class="section-title">💳 वॉलेट और निकासी</div>
+            <div class="card-box">
+                <p style="color: #94a3b8; font-size: 13px;">कुल विनिंग बैलेंस</p>
+                <h2 style="font-size: 28px; color: #22c55e; margin: 5px 0;">₹<span id="walletBalance">0.00</span></h2>
+                <p style="font-size: 12px; color: #cbd5e1;">न्यूनतम निकासी सीमा: ₹50</p>
+                <button class="btn-action" onclick="withdrawMoney()">UPI में पैसे निकालें (Withdraw)</button>
+            </div>
+            <div class="card-box">
+                <h3>पैसे जोड़ें (Add Money)</h3>
+                <p style="font-size: 12px; color: #94a3b8; margin: 5px 0 15px 0;">गेम खेलने के लिए सुरक्षित UPI गेटवे</p>
+                <button class="btn-action" style="background: #22c55e; color: #000;" onclick="addMoney()">₹100 एड करें</button>
+            </div>
+        </div>
+
+        <!-- PROFILE TAB -->
+        <div id="profileTab" class="page-section">
+            <div class="section-title">👤 यूज़र प्रोफाइल</div>
+            <div class="card-box" style="text-align: center; padding: 25px;">
+                <div style="font-size: 50px; margin-bottom: 10px;">😎</div>
+                <h3 id="profileName">पवन गेमर</h3>
+                <p style="font-size: 13px; color: #94a3b8; margin-top: 5px;">ID: #PK98421</p>
+            </div>
+            <div class="card-box">
+                <p><strong>कुल गेम खेले:</strong> 12</p>
+                <p style="margin-top: 8px;"><strong>जीत (Wins):</strong> 8</p>
+                <p style="margin-top: 8px;"><strong>रैंक:</strong> #42 (India)</p>
+            </div>
+            <button class="btn-action" style="background: #ef4444;" onclick="alert('लॉग आउट सुरक्षित रूप से किया गया!')">लॉग आउट</button>
+        </div>
+
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="switchTab('home')">
+            <div>🏠</div>
+            <div>होम</div>
+        </div>
+        <div class="nav-item" onclick="switchTab('games')">
+            <div>🎮</div>
+            <div>गेम्स</div>
+        </div>
+        <div class="nav-item" onclick="switchTab('wallet')">
+            <div>💰</div>
+            <div>वॉलेट</div>
+        </div>
+        <div class="nav-item" onclick="switchTab('profile')">
+            <div>👤</div>
+            <div>प्रोफाइल</div>
+        </div>
+    </div>
+
+    <script>
+        // 8+ मजेदार गेम्स का डेटा
+        const gamesList = [
+            { id: 1, title: "Fruit Ninja", icon: "🍉", players: "4.2k खेल रहे हैं" },
+            { id: 2, title: "Number Puzzle", icon: "🔢", players: "2.1k खेल रहे हैं" },
+            { id: 3, title: "Ludo Quick", icon: "🎲", players: "8.5k खेल रहे हैं" },
+            { id: 4, title: "Knife Hit", icon: "🗡️", players: "3.4k खेल रहे हैं" },
+            { id: 5, title: "Car Dodger", icon: "🏎️", players: "1.9k खेल रहे हैं" },
+            { id: 6, title: "Quiz Master", icon: "❓", players: "5.0k खेल रहे हैं" },
+            { id: 7, title: "Tower Stack", icon: "🧱", players: "2.8k खेल रहे हैं" },
+            { id: 8, title: "Tic-Tac-Toe", icon: "❌", players: "6.3k खेल रहे हैं" }
+        ];
+
+        let balance = 50.00; // शुरुआती डेमो बैलेंस
+
+        function updateUI() {
+            document.getElementById('userBalance').innerText = balance.toFixed(2);
+            document.getElementById('walletBalance').innerText = balance.toFixed(2);
+        }
+
+        function renderGames() {
+            let gridHTML = '';
+            gamesList.forEach(game => {
+                gridHTML += `
+                    <div class="game-card" onclick="playGame('${game.title}')">
+                        <div class="game-img">${game.icon}</div>
+                        <div class="game-info">
+                            <div class="game-title">${game.title}</div>
+                            <div class="game-players">${game.players}</div>
+                            <button class="play-btn">खेलें</button>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('gamesGrid').innerHTML = gridHTML;
+            document.getElementById('allGamesGrid').innerHTML = gridHTML;
+        }
+
+        function switchTab(tabName) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+
+            // Show selected section
+            if(tabName === 'home') {
+                document.getElementById('homeTab').classList.add('active');
+                event.currentTarget.classList.add('active');
+            } else if(tabName === 'games') {
+                document.getElementById('gamesTab').classList.add('active');
+                event.currentTarget.classList.add('active');
+            } else if(tabName === 'wallet') {
+                document.getElementById('walletTab').classList.add('active');
+                event.currentTarget.classList.add('active');
+            } else if(tabName === 'profile') {
+                document.getElementById('profileTab').classList.add('active');
+                event.currentTarget.classList.add('active');
+            }
+        }
+
+        function playGame(gameName) {
+            alert(gameName + ' लोड हो रहा है! तैयार हो जाइए...');
+            balance += 5; // गेम खेलने पर डेमो जीत
+            updateUI();
+        }
+
+        function withdrawMoney() {
+            if(balance >= 50) {
+                alert('निकासी अनुरोध सफल! आपके UPI खाते में पैसे भेजे जा रहे हैं।');
+                balance -= 50;
+                updateUI();
+            } else {
+                alert('न्यूनतम निकासी सीमा ₹50 है। जीतने के लिए और गेम खेलें!');
+            }
+        }
+
+        function addMoney() {
+            balance += 100;
+            alert('सफलतापूर्वक ₹100 आपके वॉलेट में जोड़ दिए गए हैं!');
+            updateUI();
+        }
+
+        // Initial Load
+        renderGames();
+        updateUI();
+
+        // Live Online Counter Animation
+        setInterval(() => {
+            let randomCount = Math.floor(Math.random() * 200) + 1300;
+            document.getElementById('onlineCount').innerText = randomCount;
+        }, 4000);
+    </script>
+</body>
+</html>
